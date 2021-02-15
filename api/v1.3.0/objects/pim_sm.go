@@ -3,7 +3,7 @@ package objects
 import (
 	"fmt"
 
-	"github.com/esurdam/go-sophos"
+	"github.com/bulutistan/go-sophos"
 )
 
 // PimSm is a generated struct representing the Sophos PimSm Endpoint
@@ -94,7 +94,9 @@ func (*PimSmGroups) RefRequired() (string, bool) { return "", false }
 
 // GetPath implements sophos.RestObject and returns the PimSmGroups GET path
 // Returns all available group types
-func (p *PimSmGroup) GetPath() string { return fmt.Sprintf("/api/objects/pim_sm/group/%s", p.Reference) }
+func (p *PimSmGroup) GetPath() string {
+	return fmt.Sprintf("/api/objects/pim_sm/group/%s", p.Reference)
+}
 
 // RefRequired implements sophos.RestObject
 func (p *PimSmGroup) RefRequired() (string, bool) { return p.Reference, true }
@@ -228,7 +230,9 @@ func (*PimSmRoutes) RefRequired() (string, bool) { return "", false }
 
 // GetPath implements sophos.RestObject and returns the PimSmRoutes GET path
 // Returns all available route types
-func (p *PimSmRoute) GetPath() string { return fmt.Sprintf("/api/objects/pim_sm/route/%s", p.Reference) }
+func (p *PimSmRoute) GetPath() string {
+	return fmt.Sprintf("/api/objects/pim_sm/route/%s", p.Reference)
+}
 
 // RefRequired implements sophos.RestObject
 func (p *PimSmRoute) RefRequired() (string, bool) { return p.Reference, true }

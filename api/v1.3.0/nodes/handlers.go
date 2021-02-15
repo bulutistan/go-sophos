@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 
-	"github.com/esurdam/go-sophos"
+	"github.com/bulutistan/go-sophos"
 )
 
 func get(c sophos.ClientInterface, path string, val interface{}, options ...sophos.Option) (err error) {

@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/esurdam/go-sophos"
+	"github.com/bulutistan/go-sophos"
 )
 
 func TestAutoResolveErrsMode(t *testing.T) {

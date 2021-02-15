@@ -3,7 +3,7 @@ package objects
 import (
 	"fmt"
 
-	"github.com/esurdam/go-sophos"
+	"github.com/bulutistan/go-sophos"
 )
 
 // Ca is a generated struct representing the Sophos Ca Endpoint
@@ -254,7 +254,9 @@ func (*CaHostCerts) RefRequired() (string, bool) { return "", false }
 
 // GetPath implements sophos.RestObject and returns the CaHostCerts GET path
 // Returns all available host_cert types
-func (c *CaHostCert) GetPath() string { return fmt.Sprintf("/api/objects/ca/host_cert/%s", c.Reference) }
+func (c *CaHostCert) GetPath() string {
+	return fmt.Sprintf("/api/objects/ca/host_cert/%s", c.Reference)
+}
 
 // RefRequired implements sophos.RestObject
 func (c *CaHostCert) RefRequired() (string, bool) { return c.Reference, true }
@@ -522,7 +524,9 @@ func (*CaMetaX509s) RefRequired() (string, bool) { return "", false }
 
 // GetPath implements sophos.RestObject and returns the CaMetaX509s GET path
 // Returns all available meta_x509 types
-func (c *CaMetaX509) GetPath() string { return fmt.Sprintf("/api/objects/ca/meta_x509/%s", c.Reference) }
+func (c *CaMetaX509) GetPath() string {
+	return fmt.Sprintf("/api/objects/ca/meta_x509/%s", c.Reference)
+}
 
 // RefRequired implements sophos.RestObject
 func (c *CaMetaX509) RefRequired() (string, bool) { return c.Reference, true }

@@ -8,6 +8,10 @@
 
 A [Sophos UTM REST API client](https://www.sophos.com/en-us/medialibrary/PDFs/documentation/UTMonAWS/Sophos-UTM-RESTful-API.pdf?la=en) for Go with zero dependencies. 
 
+# Great Thanks!
+
+###Thanks for works to [esurdam](https://github.com/esurdam/go-sophos) best regards.
+
 ## Prerequisites
 
 The Sophos UTM REST API must be enabled in Administrator settings.
@@ -21,13 +25,13 @@ API types and functions are [generated](#generating-types) and versioned against
 API is stable as of 0.1.0
 
 ```bash
-go get github.com/esurdam/go-sophos
+go get github.com/bulutistan/go-sophos
 ```
 
 Create a client:
 
 ```go
-import "github.com/esurdam/go-sophos"
+import "github.com/bulutistan/go-sophos"
 
 // All Options passed on initialize will be applied to all subsequent calls
 client, _ := sophos.New(
@@ -38,7 +42,7 @@ client, _ := sophos.New(
 
 Requesting the current port of the WebAdmin (see [Nodes](#nodes) for more usage):
 ```go
-import "github.com/esurdam/go-sophos"
+import "github.com/bulutistan/go-sophos"
 
 client, _ := sophos.New(
     "192.168.0.1:4848", 
@@ -57,7 +61,7 @@ fmt.Println(port)
 Nodes are interacted with using pacakage level functions:
 
 ```go
-import "github.com/esurdam/go-sophos/api/v1.3.0/nodes"
+import "github.com/bulutistan/go-sophos/api/v1.3.0/nodes"
 
 v, err := nodes.GetWebadminPort(client)
 fmt.Println(v)
@@ -69,7 +73,7 @@ err = nodes.UpdateWebadminPort(client, 4444)
 Or as struct types with syntactic sugar around the functions, as represented by the [Node](nodes.go#L24) interface:
 
 ```go
-import "github.com/esurdam/go-sophos/api/v1.3.0/nodes"
+import "github.com/bulutistan/go-sophos/api/v1.3.0/nodes"
 
 var wap nodes.WebadminPort
 err := wap.Get(client)
@@ -84,7 +88,7 @@ err = wap.Update(client)
 You can get the whole UTM node tree as an [object](#objects) as well:
 
 ```go
-import "github.com/esurdam/go-sophos/api/v1.3.0/objects"
+import "github.com/bulutistan/go-sophos/api/v1.3.0/objects"
 
 var nodes objects.Nodes
 _ := client.GetObject(&nodes)
@@ -100,7 +104,7 @@ Each file in the [objects](api/v1.3.0/objects) dir represents an [Endpoint](node
 Objects implement the [RestObject](nodes.go#L46) interface:
 
 ```go
-import "github.com/esurdam/go-sophos/api/v1.3.0/objects"
+import "github.com/bulutistan/go-sophos/api/v1.3.0/objects"
 
 var dns objects.Dns
 err := client.GetObject(&dns)
@@ -108,7 +112,7 @@ err := client.GetObject(&dns)
 
 Notice that some objects are pluralized and only implement the [RestGetter](nodes.go#L56) interface:
 ```go
-import "github.com/esurdam/go-sophos/api/v1.3.0/objects"
+import "github.com/bulutistan/go-sophos/api/v1.3.0/objects"
 
 var ss objects.DnsRoutes
 _ = client.GetObject(&ss)
@@ -126,7 +130,7 @@ for _, s := range ss {
 Note that [Endpoint](nodes.go#L2) types contain their [Definition](definition.go#L3):
 
 ```go
-import "github.com/esurdam/go-sophos/api/v1.3.0/objects"
+import "github.com/bulutistan/go-sophos/api/v1.3.0/objects"
 
 fmt.Printf("%#v", objects.Dns{}.Definition())
 // Output: sophos.Definition{
@@ -139,7 +143,7 @@ fmt.Printf("%#v", objects.Dns{}.Definition())
 Requesting an Endpoint's [Swag](definition.go#L29):
 
 ```go
-import "github.com/esurdam/go-sophos/api/v1.3.0/objects"
+import "github.com/bulutistan/go-sophos/api/v1.3.0/objects"
 
 // with sugar
 var dns objects.Dns
@@ -159,7 +163,7 @@ Deleting a packet filter rule with reference `REF_PacPacXYZ`:
 
 This example uses the `X-Restd-Err-Ack: all` header to automatically approve the deletion of the object:
 ```go
-import "github.com/esurdam/go-sophos"
+import "github.com/bulutistan/go-sophos"
 
 client, _ := sophos.New(
     "192.168.0.1:4848", 
@@ -176,8 +180,8 @@ _, err := client.Delete(
 The same as above but using objects: [[example](examples/delete_packetfilter.go)]
 
 ```go
-import "github.com/esurdam/go-sophos"
-import "github.com/esurdam/go-sophos/api/v1.3.0/objects"
+import "github.com/bulutistan/go-sophos"
+import "github.com/bulutistan/go-sophos/api/v1.3.0/objects"
 
 client, _ := sophos.New(
     "192.168.0.1:4848", 
@@ -198,8 +202,8 @@ err := client.DeleteObject(&pf,
 Creating a PacketFilter: [[example](examples/create_packetfilter.go)]
 
 ```go
-import "github.com/esurdam/go-sophos"
-import "github.com/esurdam/go-sophos/api/v1.3.0/objects"
+import "github.com/bulutistan/go-sophos"
+import "github.com/bulutistan/go-sophos/api/v1.3.0/objects"
 
 client, _ := sophos.New(
     "192.168.0.1:4848", 

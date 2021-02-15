@@ -3,7 +3,7 @@ package objects
 import (
 	"fmt"
 
-	"github.com/esurdam/go-sophos"
+	"github.com/bulutistan/go-sophos"
 )
 
 // Pop3 is a generated struct representing the Sophos Pop3 Endpoint

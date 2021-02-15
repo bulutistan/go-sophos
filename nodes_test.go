@@ -3,7 +3,7 @@ package sophos_test
 import (
 	"testing"
 
-	"github.com/esurdam/go-sophos"
+	"github.com/bulutistan/go-sophos"
 )
 
 func TestIsReference(t *testing.T) {

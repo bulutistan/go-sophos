@@ -2,6 +2,7 @@ package sophos
 
 import (
 	"bytes"
+	"crypto/tls"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -18,7 +19,13 @@ type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
-func init() { DefaultHTTPClient = &http.Client{} }
+func init() {
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+
+	DefaultHTTPClient = &http.Client{Transport: tr}
+}
 
 // ClientInterface represents a Sophos 9 REST API client
 type ClientInterface interface {

@@ -5,9 +5,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/esurdam/go-sophos"
-	"github.com/esurdam/go-sophos/api/v1.3.0/nodes"
-	types "github.com/esurdam/go-sophos/api/v1.3.0/objects"
+	"github.com/bulutistan/go-sophos"
+	"github.com/bulutistan/go-sophos/api/v1.3.0/nodes"
+	types "github.com/bulutistan/go-sophos/api/v1.3.0/objects"
 )
 
 var (

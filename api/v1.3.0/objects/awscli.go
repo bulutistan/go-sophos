@@ -3,7 +3,7 @@ package objects
 import (
 	"fmt"
 
-	"github.com/esurdam/go-sophos"
+	"github.com/bulutistan/go-sophos"
 )
 
 // Awscli is a generated struct representing the Sophos Awscli Endpoint

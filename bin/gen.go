@@ -16,7 +16,7 @@ import (
 	"text/template"
 
 	"github.com/ChimeraCoder/gojson"
-	"github.com/esurdam/go-sophos"
+	"github.com/bulutistan/go-sophos"
 )
 
 var (
@@ -31,7 +31,7 @@ var (
 import (
 	"fmt"
 
-	"github.com/esurdam/go-sophos"
+	"github.com/bulutistan/go-sophos"
 )
 `
 )
@@ -263,7 +263,7 @@ func executeTmpl(f io.Writer, v string, data interface{}) {
 
 var nodesHeader = `package nodes
 
-import "github.com/esurdam/go-sophos"
+import "github.com/bulutistan/go-sophos"
 import "encoding/json"
 `
 
@@ -1042,7 +1042,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/esurdam/go-sophos"
+	"github.com/bulutistan/go-sophos"
 )
 
 var client *sophos.Client

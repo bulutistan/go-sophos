@@ -3,7 +3,7 @@ package objects
 import (
 	"fmt"
 
-	"github.com/esurdam/go-sophos"
+	"github.com/bulutistan/go-sophos"
 )
 
 // ApplicationControl is a generated struct representing the Sophos ApplicationControl Endpoint

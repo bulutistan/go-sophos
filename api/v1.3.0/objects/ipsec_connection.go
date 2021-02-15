@@ -3,7 +3,7 @@ package objects
 import (
 	"fmt"
 
-	"github.com/esurdam/go-sophos"
+	"github.com/bulutistan/go-sophos"
 )
 
 // IpsecConnection is a generated struct representing the Sophos IpsecConnection Endpoint
@@ -111,7 +111,9 @@ var _ sophos.RestGetter = &IpsecConnectionAmazonVpc{}
 
 // GetPath implements sophos.RestObject and returns the IpsecConnectionAmazonVpcs GET path
 // Returns all available ipsec_connection/amazon_vpc objects
-func (*IpsecConnectionAmazonVpcs) GetPath() string { return "/api/objects/ipsec_connection/amazon_vpc/" }
+func (*IpsecConnectionAmazonVpcs) GetPath() string {
+	return "/api/objects/ipsec_connection/amazon_vpc/"
+}
 
 // RefRequired implements sophos.RestObject
 func (*IpsecConnectionAmazonVpcs) RefRequired() (string, bool) { return "", false }

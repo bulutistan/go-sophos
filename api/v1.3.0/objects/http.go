@@ -3,7 +3,7 @@ package objects
 import (
 	"fmt"
 
-	"github.com/esurdam/go-sophos"
+	"github.com/bulutistan/go-sophos"
 )
 
 // Http is a generated struct representing the Sophos Http Endpoint
@@ -727,7 +727,9 @@ func (*HttpLslTags) RefRequired() (string, bool) { return "", false }
 
 // GetPath implements sophos.RestObject and returns the HttpLslTags GET path
 // Returns all available lsl_tag types
-func (h *HttpLslTag) GetPath() string { return fmt.Sprintf("/api/objects/http/lsl_tag/%s", h.Reference) }
+func (h *HttpLslTag) GetPath() string {
+	return fmt.Sprintf("/api/objects/http/lsl_tag/%s", h.Reference)
+}
 
 // RefRequired implements sophos.RestObject
 func (h *HttpLslTag) RefRequired() (string, bool) { return h.Reference, true }

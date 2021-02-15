@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/esurdam/go-sophos"
+	"github.com/bulutistan/go-sophos"
 )
 
 // ReverseProxy is a generated struct representing the Sophos ReverseProxy Endpoint
@@ -464,7 +464,9 @@ var _ sophos.RestGetter = &ReverseProxyFormTemplate{}
 
 // GetPath implements sophos.RestObject and returns the ReverseProxyFormTemplates GET path
 // Returns all available reverse_proxy/form_template objects
-func (*ReverseProxyFormTemplates) GetPath() string { return "/api/objects/reverse_proxy/form_template/" }
+func (*ReverseProxyFormTemplates) GetPath() string {
+	return "/api/objects/reverse_proxy/form_template/"
+}
 
 // RefRequired implements sophos.RestObject
 func (*ReverseProxyFormTemplates) RefRequired() (string, bool) { return "", false }

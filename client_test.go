@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/esurdam/go-sophos"
+	"github.com/bulutistan/go-sophos"
 )
 
 var client *sophos.Client

@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/esurdam/go-sophos"
-	types "github.com/esurdam/go-sophos/api/v1.3.0/objects"
+	"github.com/bulutistan/go-sophos"
+	types "github.com/bulutistan/go-sophos/api/v1.3.0/objects"
 )
 
 //noinspection ALL
