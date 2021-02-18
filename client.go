@@ -19,13 +19,7 @@ type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
-func init() {
-	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
-	}
-
-	DefaultHTTPClient = &http.Client{Transport: tr}
-}
+func init() { DefaultHTTPClient = &http.Client{} }
 
 // ClientInterface represents a Sophos 9 REST API client
 type ClientInterface interface {
@@ -60,6 +54,24 @@ var _ ObjectClient = ensureInterface
 
 // ErrRefRequired is an error that is returned when the resource requires a Referencee to fetch data
 var ErrRefRequired = errors.New("client: Reference is required")
+
+// Re-set DefaultHTTPClient for https errors.
+// 
+// Ex. Verify SSL error
+//
+// client, _ := sophos.New(...)
+//
+// client.SetDefaultHTTPClient(http.Client{
+//	Transport: &http.Transport{
+//		TLSClientConfig: &tls.Config{
+//			InsecureSkipVerify: true,
+//		},
+//	},
+//})
+//
+func (c Client) SetDefaultHTTPClient(cl http.Client)  {
+	DefaultHTTPClient = &cl
+}
 
 // New returns a new Client.
 // The endpoint provided should point to the Sophos Gateway.
