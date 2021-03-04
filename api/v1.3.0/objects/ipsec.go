@@ -3,7 +3,7 @@ package objects
 import (
 	"fmt"
 
-	"github.com/bulutistan/go-sophos"
+	"github.com/bulutistan/go-sophos/sophos"
 )
 
 // Ipsec is a generated struct representing the Sophos Ipsec Endpoint

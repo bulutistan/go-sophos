@@ -6,6 +6,8 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"io/ioutil"
+	"log"
 	"net/http"
 	"strings"
 )
@@ -55,7 +57,7 @@ var _ ObjectClient = ensureInterface
 var ErrRefRequired = errors.New("client: Reference is required")
 
 // Re-set DefaultHTTPClient for https errors.
-// 
+//
 // Ex. Verify SSL error
 //
 // client, _ := sophos.New(...)
@@ -68,7 +70,7 @@ var ErrRefRequired = errors.New("client: Reference is required")
 //	},
 //})
 //
-func (c Client) SetDefaultHTTPClient(cl http.Client)  {
+func (c Client) SetDefaultHTTPClient(cl http.Client) {
 	DefaultHTTPClient = &cl
 }
 
@@ -160,6 +162,7 @@ func (c Client) Get(path string, options ...Option) (*Response, error) {
 // PUT /api/objects/packetfilter/packetfilter/REF_PacPacAllowAnyFTPOut
 func (c Client) Put(path string, body io.Reader, options ...Option) (*Response, error) {
 	r, err := c.Do(http.MethodPut, path, body, options...)
+
 	if err != nil {
 		return r, err
 	}
@@ -241,24 +244,31 @@ func (c Client) GetObject(o RestGetter, options ...Option) error {
 	if ref, required := o.RefRequired(); required && ref == "" {
 		return ErrRefRequired
 	}
-	res, err := c.Get(o.GetPath(), options...)
+	r, err := c.Get(o.GetPath(), options...)
 	if err != nil {
+		b, _ := ioutil.ReadAll(r.Body)
+		log.Print(b)
 		return err
 	}
-	err = res.MarshalTo(o)
+	err = r.MarshalTo(o)
 	return err
 }
 
 // PostObject POSTs the RestObject
 func (c Client) PostObject(o RestObject, options ...Option) error {
 	byt, _ := json.Marshal(o)
-	res, err := c.Post(o.PostPath(), bytes.NewReader(byt), options...)
+	r, err := c.Post(o.PostPath(), bytes.NewReader(byt), options...)
+	if err != nil {
+		b, _ := ioutil.ReadAll(r.Body)
+		log.Print(string(b))
+		return err
+	}
 
-	if res.StatusCode == http.StatusCreated {
+	if r.StatusCode == http.StatusCreated {
 		// Operation successful and created a new resource. The newly created
 		// resource and its path and REF_ string are returned in the
 		// Location header
-		err = res.MarshalTo(o)
+		err = r.MarshalTo(o)
 	}
 
 	return err
@@ -271,7 +281,11 @@ func (c Client) PatchObject(o RestObject, options ...Option) error {
 		return ErrRefRequired
 	}
 	byt, _ := json.Marshal(o)
-	_, err := c.Patch(o.PatchPath(ref), bytes.NewReader(byt), options...)
+	r, err := c.Patch(o.PatchPath(ref), bytes.NewReader(byt), options...)
+	if err != nil {
+		b, _ := ioutil.ReadAll(r.Body)
+		log.Print(string(b))
+	}
 	return err
 }
 
@@ -282,7 +296,11 @@ func (c Client) PutObject(o RestObject, options ...Option) error {
 		return ErrRefRequired
 	}
 	byt, _ := json.Marshal(o)
-	_, err := c.Put(o.PutPath(ref), bytes.NewReader(byt), options...)
+	r, err := c.Put(o.PutPath(ref), bytes.NewReader(byt), options...)
+	if err != nil {
+		b, _ := ioutil.ReadAll(r.Body)
+		log.Fatal(string(b))
+	}
 	return err
 }
 
@@ -292,7 +310,11 @@ func (c Client) DeleteObject(o RestObject, options ...Option) error {
 	if required && ref == "" {
 		return ErrRefRequired
 	}
-	_, err := c.Delete(o.DeletePath(ref), options...)
+	r, err := c.Delete(o.DeletePath(ref), options...)
+	if err != nil {
+		b, _ := ioutil.ReadAll(r.Body)
+		log.Fatal(b)
+	}
 	return err
 }
 

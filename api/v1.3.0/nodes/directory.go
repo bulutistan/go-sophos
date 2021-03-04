@@ -1,6 +1,6 @@
 package nodes
 
-import "github.com/bulutistan/go-sophos"
+import "github.com/bulutistan/go-sophos/sophos"
 
 // Lookup will retrieve a sophos.Node by its name
 func Lookup(name string) sophos.Node { return nodeDirectory[name] }

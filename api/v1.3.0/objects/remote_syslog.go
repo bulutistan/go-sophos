@@ -3,7 +3,7 @@ package objects
 import (
 	"fmt"
 
-	"github.com/bulutistan/go-sophos"
+	"github.com/bulutistan/go-sophos/sophos"
 )
 
 // RemoteSyslog is a generated struct representing the Sophos RemoteSyslog Endpoint

@@ -3,7 +3,7 @@ package objects
 import (
 	"fmt"
 
-	"github.com/bulutistan/go-sophos"
+	"github.com/bulutistan/go-sophos/sophos"
 )
 
 // Packetfilter is a generated struct representing the Sophos Packetfilter Endpoint

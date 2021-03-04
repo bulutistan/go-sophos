@@ -4,7 +4,7 @@
 package objects
 
 import (
-	"github.com/bulutistan/go-sophos"
+	"github.com/bulutistan/go-sophos/sophos"
 )
 
 // Nodes is a generated struct representing the Sophos Nodes Endpoint

@@ -1,17 +1,12 @@
-package main
+package examples
 
 import (
 	"fmt"
 	"log"
 	"os"
 
-	"github.com/bulutistan/go-sophos"
 	types "github.com/bulutistan/go-sophos/api/v1.3.0/objects"
-)
-
-//noinspection ALL
-var (
-	endpoint, token string
+	"github.com/bulutistan/go-sophos/sophos"
 )
 
 func init() {
@@ -48,7 +43,7 @@ func main() {
 		Status:       true,
 	}
 
-	err = client.PostObject(&p, sophos.WithRestdInsert("packetfilter.rules", 0), sophos.WithSessionClose)
+	err = client.PostObject(&p, sophos.WithRestdInsert("network.rules", 0), sophos.WithSessionClose)
 	if err != nil {
 		log.Fatal(err)
 	}

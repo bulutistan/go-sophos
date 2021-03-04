@@ -3,7 +3,7 @@ package objects
 import (
 	"fmt"
 
-	"github.com/bulutistan/go-sophos"
+	"github.com/bulutistan/go-sophos/sophos"
 )
 
 // IpsecRemoteAuth is a generated struct representing the Sophos IpsecRemoteAuth Endpoint

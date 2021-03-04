@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/bulutistan/go-sophos/sophos"
 	"io"
 	"log"
 	"math"
@@ -15,8 +16,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/ChimeraCoder/gojson"
-	"github.com/bulutistan/go-sophos"
+	"github.com/bulutistan/gojson"
 )
 
 var (
@@ -31,7 +31,7 @@ var (
 import (
 	"fmt"
 
-	"github.com/bulutistan/go-sophos"
+	"github.com/bulutistan/go-sophos/sophos"
 )
 `
 )
@@ -263,7 +263,7 @@ func executeTmpl(f io.Writer, v string, data interface{}) {
 
 var nodesHeader = `package nodes
 
-import "github.com/bulutistan/go-sophos"
+import "github.com/bulutistan/go-sophos/sophos"
 import "encoding/json"
 `
 
@@ -1042,7 +1042,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/bulutistan/go-sophos"
+	"github.com/bulutistan/go-sophos/sophos"
 )
 
 var client *sophos.Client

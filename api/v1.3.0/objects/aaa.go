@@ -2,7 +2,7 @@ package objects
 
 import (
 	"fmt"
-	"github.com/bulutistan/go-sophos"
+	"github.com/bulutistan/go-sophos/sophos"
 )
 
 // Aaa is a generated struct representing the Sophos Aaa Endpoint

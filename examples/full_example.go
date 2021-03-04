@@ -1,17 +1,13 @@
-package main
+package examples
 
 import (
 	"fmt"
 	"log"
 	"os"
 
-	"github.com/bulutistan/go-sophos"
 	"github.com/bulutistan/go-sophos/api/v1.3.0/nodes"
 	types "github.com/bulutistan/go-sophos/api/v1.3.0/objects"
-)
-
-var (
-	endpoint, token string
+	"github.com/bulutistan/go-sophos/sophos"
 )
 
 func init() {

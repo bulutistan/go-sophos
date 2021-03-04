@@ -31,7 +31,7 @@ go get github.com/bulutistan/go-sophos
 Create a client:
 
 ```go
-import "github.com/bulutistan/go-sophos"
+import "github.com/bulutistan/go-sophos/sophos"
 
 // All Options passed on initialize will be applied to all subsequent calls
 client, _ := sophos.New(
@@ -42,7 +42,7 @@ client, _ := sophos.New(
 
 Requesting the current port of the WebAdmin (see [Nodes](#nodes) for more usage):
 ```go
-import "github.com/bulutistan/go-sophos"
+import "github.com/bulutistan/go-sophos/sophos"
 
 client, _ := sophos.New(
     "192.168.0.1:4848", 
@@ -163,7 +163,7 @@ Deleting a packet filter rule with reference `REF_PacPacXYZ`:
 
 This example uses the `X-Restd-Err-Ack: all` header to automatically approve the deletion of the object:
 ```go
-import "github.com/bulutistan/go-sophos"
+import "github.com/bulutistan/go-sophos/sophos"
 
 client, _ := sophos.New(
     "192.168.0.1:4848", 
@@ -171,7 +171,7 @@ client, _ := sophos.New(
 )
 
 _, err := client.Delete(
-    "api/objects/packetfilter/packetfilter/REF_PacPacXYZ", 
+    "api/objects/network/network/REF_PacPacXYZ", 
     sophos.WithSessionClose, 
     sophos.AutoResolveErrsMode,
 )
@@ -180,7 +180,7 @@ _, err := client.Delete(
 The same as above but using objects: [[example](examples/delete_packetfilter.go)]
 
 ```go
-import "github.com/bulutistan/go-sophos"
+import "github.com/bulutistan/go-sophos/sophos"
 import "github.com/bulutistan/go-sophos/api/v1.3.0/objects"
 
 client, _ := sophos.New(
@@ -202,7 +202,7 @@ err := client.DeleteObject(&pf,
 Creating a PacketFilter: [[example](examples/create_packetfilter.go)]
 
 ```go
-import "github.com/bulutistan/go-sophos"
+import "github.com/bulutistan/go-sophos/sophos"
 import "github.com/bulutistan/go-sophos/api/v1.3.0/objects"
 
 client, _ := sophos.New(
@@ -221,7 +221,7 @@ pf := objects.PacketfilterPacketfilter{
 }
 
 err := client.PostObject(&pf, 
-	sophos.WithRestdInsert("packetfilter.rules", 0), 
+	sophos.WithRestdInsert("network.rules", 0), 
 	sophos.WithSessionClose,
 )
 
@@ -244,6 +244,34 @@ if err != nil {
     	e.IsFatal()
     }
 }
+```
+
+##Facades
+
+Connection example there is [main.go](main.go).
+
+Facades examples there is [facades](facades).
+
+###Enviroment
+
+If you want to use Connection object it's need enviroment variables from [GenEnviroment](utils/getenv.go).
+
+For auth with token set SOPHOS_USERNAME is 'token' and set SOPHOS_PASSWORD is your token.
+
+For skip SSL verify set SOPHOS_INSECURE is 'yes'.
+
+```
+export SOPHOS_ENDPOINT=mysophos:myport
+export SOPHOS_USERNAME=username
+export SOPHOS_PASSWORD=password
+export SOPHOS_INSECURE=no
+
+or
+
+export SOPHOS_ENDPOINT=mysophos:myport
+export SOPHOS_USERNAME=token
+export SOPHOS_PASSWORD=mytoken
+export SOPHOS_INSECURE=no
 ```
 
 ## Generating Types
